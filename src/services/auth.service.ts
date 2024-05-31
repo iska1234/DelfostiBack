@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { UserData } from "../models/users";
 import { ApiError } from "../middlewares/error";
 import { generateToken } from "../utils/token";
-import { getUserIdByEmail, loginUser, registerUser } from "../data/auth-data";
+import { getUserIdByEmail, loginUser, registerUser } from "../data/auth.data";
 
 
 export async function registerUserToken(

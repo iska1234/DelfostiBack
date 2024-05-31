@@ -1,6 +1,6 @@
 import express from "express";
 
-import { login, logout, register } from "../controller/authController";
+import { login, logout, register } from "../controller/auth.controller";
 
 
 

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiError } from "../middlewares/error";
 import { userSchema } from "../models/users";
-import { loginUserToken, registerUserToken } from "../services/authService";
+import { loginUserToken, registerUserToken } from "../services/auth.service";
 import z from "zod";
-import { verifyEmail } from "../data/auth-data";
+import { verifyEmail } from "../data/auth.data";
 
 export const register = async (
   req: Request,
