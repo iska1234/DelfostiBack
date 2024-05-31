@@ -1,7 +1,7 @@
 import { query } from "../db";
 import { Users } from "../models/users";
 
-export async function obtenerUsuarios(): Promise<Users[]> {
+export async function getAllUsers(): Promise<Users[]> {
     const queryString = `
     SELECT u.id, u.email, u.projectId, u.role, p.name AS projectName, u.name, u.age
       FROM users AS u

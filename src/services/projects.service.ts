@@ -40,10 +40,10 @@ export async function getProjectsDateByIdService(
   const fechas = await getProjectsDateById(id);
 
   if (fechas) {
-    const { fechainicio, fechafin } = fechas;
+    const { startdate, enddate } = fechas;
 
-    const [mesInicio, añoInicio] = getMonthAndYear(fechainicio);
-    const [mesFin, _añoFin] = getMonthAndYear(fechafin);
+    const [mesInicio, añoInicio] = getMonthAndYear(startdate);
+    const [mesFin, _añoFin] = getMonthAndYear(enddate);
 
     return { mesInicio, mesFin, año: añoInicio };
   } else {

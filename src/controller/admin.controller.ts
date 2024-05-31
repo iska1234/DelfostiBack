@@ -1,15 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../middlewares/error";
-import { obtenerUsuariosService } from "../services/admin.service";
+import { getAllUsersService } from "../services/admin.service";
 
-
-export async function obtenerUsuariosController(
+export async function getAllUsersController(
   _req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const usuarios = await obtenerUsuariosService();
+    const usuarios = await getAllUsersService();
 
     return res.status(200).json({
       success: true,

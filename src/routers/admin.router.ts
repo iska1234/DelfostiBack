@@ -1,5 +1,5 @@
 import express from "express";
-import { obtenerUsuariosController } from "../controller/admin.controller";
+import { getAllUsersController } from "../controller/admin.controller";
 import { authenticateHandler } from "../middlewares/authenticate";
 import { authorize } from "../middlewares/authorize";
 
@@ -9,7 +9,7 @@ adminRouter.get(
   "/users/all",
   authenticateHandler,
   authorize("admin"),
-  obtenerUsuariosController
+  getAllUsersController
 );
 
 export default adminRouter;

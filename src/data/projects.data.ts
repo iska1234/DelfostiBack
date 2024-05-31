@@ -51,7 +51,7 @@ export async function getProjectsDateById(
   id: number
 ): Promise<FechasProyectoData | null> {
   const queryString = `
-      SELECT fechaInicio, fechaFin FROM proyectos WHERE id = $1;
+      SELECT startDate, endDate FROM projects WHERE id = $1;
     `;
   const { rows } = await query(queryString, [id]);
 

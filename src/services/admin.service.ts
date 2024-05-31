@@ -1,7 +1,7 @@
-import { obtenerUsuarios } from "../data/admin.data";
+import { getAllUsers } from "../data/admin.data";
 import { Users } from "../models/users";
 
-export async function obtenerUsuariosService(): Promise<Users[]> {
-  const users = await obtenerUsuarios();
+export async function getAllUsersService(): Promise<Users[]> {
+  const users = await getAllUsers();
   return users;
 }

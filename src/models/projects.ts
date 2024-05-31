@@ -12,8 +12,8 @@ export const projectSchema = z.object({
   updated_at: z.string().optional(),
 });
 export const fechasProyectoSchema = z.object({
-  fechainicio: z.string(),
-  fechafin: z.string(),
+  startdate: z.string(),
+  enddate: z.string(),
 });
 
 export type ProjectData = z.infer<typeof projectSchema>;

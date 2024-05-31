@@ -101,13 +101,13 @@ export const login = async (
   try {
     const { email, password } = req.body;
 
-    const { id, token, role } = await loginUserToken(email, password);
+    const { id, token } = await loginUserToken(email, password);
 
     req.session.userId = id;
     return res.json({
       success: true,
       message: "Inicio de sesión exitoso",
-      data: { token, role },
+      data: { token },
     });
   } catch (error) {
     console.error("Error en el inicio de sesión:", error);
