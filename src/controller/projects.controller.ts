@@ -8,6 +8,7 @@ export async function addNewProjectController(req: Request, res: Response, next:
       console.log("Recibiendo solicitud para crear un nuevo proyecto");
   
       const { name, description, startDate, endDate, responsible } = req.body;
+      
       if (!name || !description || !startDate || !endDate || !responsible) {
         throw new ApiError("Todos los campos son obligatorios", 400);
       }

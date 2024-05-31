@@ -28,9 +28,9 @@ export async function addNewProject(
 
 export async function getAllProjects(): Promise<Projects[]> {
   const queryString = `
-    SELECT p.*, u.name
-    FROM projects AS p
-    INNER JOIN users AS u ON p.responsible = u.id;
+  SELECT p.*, u.name AS user_name
+  FROM projects AS p
+  INNER JOIN users AS u ON p.responsible = u.id;
     `;
   const { rows } = await query(queryString);
   return rows as Projects[];

@@ -6,6 +6,7 @@ import sessionHandler from "./middlewares/session";
 import errorHandler from "./middlewares/error";
 import authRouter from "./routers/auth.router";
 import projectsRouter from "./routers/projects.router";
+import adminRouter from "./routers/admin.router";
 
 const morgan = require("morgan");
 const app = express();
@@ -24,6 +25,7 @@ app.use(
     
 app.use("/auth", authRouter);
 app.use("/projects", projectsRouter);
+app.use("/admin", adminRouter);
 app.listen(port, () => console.log(`Escuchando al puerto ${port}`));
 
 export default app;
