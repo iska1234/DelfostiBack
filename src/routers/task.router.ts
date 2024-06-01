@@ -3,8 +3,11 @@ import { authenticateHandler } from "../middlewares/authenticate";
 import { authorize } from "../middlewares/authorize";
 import {
   addNewTaskController,
+  getTaskByIdController,
   getTasksByProjectController,
   getTasksByUserController,
+  updateCompletedTaskController,
+  updateRevisionTaskController,
 } from "../controller/tasks.controller";
 
 const taskRouter = express.Router();
@@ -28,6 +31,27 @@ taskRouter.get(
   authenticateHandler,
   authorize("admin", "user"),
   getTasksByUserController
+);
+
+taskRouter.get(
+  "/details/:taskId",
+  authenticateHandler,
+  authorize("admin", "user"),
+  getTaskByIdController
+);
+
+taskRouter.patch(
+  "/update/revision/:taskId",
+  authenticateHandler,
+  authorize("admin", "user"),
+  updateRevisionTaskController
+);
+
+taskRouter.patch(
+  "/update/completed/:taskId",
+  authenticateHandler,
+  authorize("admin"),
+  updateCompletedTaskController
 );
 
 export default taskRouter;

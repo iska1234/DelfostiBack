@@ -2,11 +2,11 @@ import { query } from "../db";
 import { Tarea } from "../models/tasks";
 
 export async function addNewTask(
-  projectId: number,
-  taskName: string,
-  taskDescription: string,
-  startDate: string,
-  endDate: string,
+  projectid: number,
+  taskname: string,
+  taskdescription: string,
+  startdate: string,
+  enddate: string,
   color: string,
   state: string = "Elaboración",
   advance: number = 1,
@@ -18,11 +18,11 @@ export async function addNewTask(
     RETURNING *
     `;
   const { rows } = await query(queryString, [
-    projectId,
-    taskName,
-    taskDescription,
-    startDate,
-    endDate,
+    projectid,
+    taskname,
+    taskdescription,
+    startdate,
+    enddate,
     color,
     advance,
     state,
@@ -48,4 +48,58 @@ export async function getTasksByUser(userId: number): Promise<Tarea[]> {
   `;
   const { rows } = await query(queryString, [userId]);
   return rows;
+}
+
+export async function getTaskById(taskId: number): Promise<Tarea | null> {
+  const queryString = `
+    SELECT tasks.*, users.name AS responsible_name
+    FROM tasks
+    INNER JOIN users ON tasks.responsible = users.id
+    WHERE tasks.taskid = $1
+  `;
+  const { rows } = await query(queryString, [taskId]);
+  return rows.length ? rows[0] : null;
+}
+
+export async function updateRevisionTask(
+  taskId: number
+): Promise<Tarea | null> {
+  const avance = 25;
+  const estado = "Revisión";
+
+  const queryString = `
+  UPDATE tasks
+  SET advance = $1, state = $2
+    WHERE taskId = $3
+    RETURNING *
+  `;
+
+  const { rows } = await query(queryString, [avance, estado, taskId]);
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rows[0] as Tarea;
+}
+export async function updateCompletedTask(
+  taskId: number
+): Promise<Tarea | null> {
+  const avance = 100;
+  const estado = "Completada";
+
+  const queryString = `
+    UPDATE tasks
+    SET advance = $1, state = $2
+    WHERE taskId = $3
+    RETURNING *
+  `;
+
+  const { rows } = await query(queryString, [avance, estado, taskId]);
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rows[0] as Tarea;
 }
