@@ -47,5 +47,6 @@ export async function getUserProjectId(userId: number): Promise<number | null> {
   `;
   const values = [userId];
   const { rows } = await query(queryString, values);
-  return rows.length > 0 ? rows[0].projectId : null;
+  const projectId = rows.length > 0 ? rows[0] : null;
+  return projectId;
 }

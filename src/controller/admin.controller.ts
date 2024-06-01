@@ -90,6 +90,6 @@ export async function getUserProjectIdController(
     });
   } catch (error) {
     console.error("Error while fetching user's projectId:", error);
-   return next(new ApiError("Internal server error", 500));
+    return next(new ApiError("Internal server error", 500));
   }
 }

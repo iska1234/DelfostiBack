@@ -23,6 +23,6 @@ export async function getUserProjectIdService(userId: number): Promise<number | 
     return projectId;
   } catch (error) {
     console.error("Error while fetching user's projectId:", error);
-    return null;
+    throw new Error("Internal server error");
   }
 }
