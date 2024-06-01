@@ -37,7 +37,7 @@ taskRouter.get(
 taskRouter.get(
   "/details/:taskId",
   authenticateHandler,
-  authorize("admin", "user"),
+  authorize("admin", "user", "jefe_proyecto"),
   getTaskByIdController
 );
 
