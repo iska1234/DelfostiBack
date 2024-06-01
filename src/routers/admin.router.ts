@@ -34,7 +34,7 @@ adminRouter.patch(
 adminRouter.get(
   "/users/projectId/:id",
   authenticateHandler,
-  authorize("admin", "jefe_encargado"),
+  authorize("admin", "jefe_proyecto"),
   getUserProjectIdController
 );
 

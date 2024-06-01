@@ -15,7 +15,7 @@ export async function getAllUsers(): Promise<Users[]> {
 
 
 export async function updateUserRole(userId: number): Promise<Users | null> {
-  const role = "jefe_encargado";
+  const role = "jefe_proyecto";
   const queryString = `
       UPDATE users
       SET role = $1

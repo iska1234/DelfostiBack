@@ -51,14 +51,14 @@ taskRouter.patch(
 taskRouter.patch(
   "/update/completed/:taskId",
   authenticateHandler,
-  authorize("admin", "jefe_encargado"),
+  authorize("admin", "jefe_proyecto"),
   updateCompletedTaskController
 );
 
 taskRouter.patch(
   "/update/declined/:taskId",
   authenticateHandler,
-  authorize("admin", "jefe_encargado"),
+  authorize("admin", "jefe_proyecto"),
   updateDeclinedTaskController
 );
 
