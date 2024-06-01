@@ -18,5 +18,6 @@ export async function assignUserToProjectService(userId: number, projectId: numb
 }
 
 export async function getUserProjectIdService(userId: number): Promise<number | null> {
-  return getUserProjectId(userId);
+  const projectId = getUserProjectId(userId);
+  return projectId;
 }
