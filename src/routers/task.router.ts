@@ -23,7 +23,7 @@ taskRouter.post(
 taskRouter.get(
   "/all-project/:projectId",
   authenticateHandler,
-  authorize("admin"),
+  authorize("admin", "jefe_proyecto"),
   getTasksByProjectController
 );
 
