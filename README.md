@@ -6,6 +6,10 @@
 
 URL Api: https://delfostiback.onrender.com
 
+FrontEnd Repository: https://github.com/iska1234
+
+### Notes: The server sometimes becomes down which requests can take up to 50 seconds maximum due to relogging. Thanks.
+
 ## 📝 Table of Contents
 
 - [About](#about)
