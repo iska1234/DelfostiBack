@@ -63,6 +63,12 @@ PGPASSWORD=
 schema.sql
 ```
 
+5. In the main directory you will find a file called delfosti_back, you can restore the database to use it locally:
+
+
+![image](https://github.com/iska1234/DelfostiBack/assets/119825666/2ce1fe21-8d8a-43ee-b5a0-b2a776ff97b2)
+
+
 6. Start the server:
 ```bash
 npm run dev
