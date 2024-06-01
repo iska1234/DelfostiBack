@@ -1,4 +1,4 @@
-import { assignUserToProject, getAllUsers, updateUserRole } from "../data/admin.data";
+import { assignUserToProject, getAllUsers, getUserProjectId, updateUserRole } from "../data/admin.data";
 import { Users } from "../models/users";
 
 export async function getAllUsersService(): Promise<Users[]> {
@@ -15,4 +15,8 @@ export async function updateUserRoleService(userId: number): Promise<Users | nul
 export async function assignUserToProjectService(userId: number, projectId: number): Promise<Users | null> {
   const updatedUser = await assignUserToProject(userId, projectId);
   return updatedUser;
+}
+
+export async function getUserProjectIdService(userId: number): Promise<number | null> {
+  return getUserProjectId(userId);
 }

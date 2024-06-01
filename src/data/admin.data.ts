@@ -38,3 +38,14 @@ export async function assignUserToProject(userId: number, projectId: number): Pr
   const { rows } = await query(queryString, values);
   return rows.length > 0 ? rows[0] : null;
 }
+
+export async function getUserProjectId(userId: number): Promise<number | null> {
+  const queryString = `
+    SELECT projectId
+    FROM users
+    WHERE id = $1;
+  `;
+  const values = [userId];
+  const { rows } = await query(queryString, values);
+  return rows.length > 0 ? rows[0].projectId : null;
+}

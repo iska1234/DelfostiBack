@@ -2,6 +2,7 @@ import express from "express";
 import {
   assignUserToProjectController,
   getAllUsersController,
+  getUserProjectIdController,
   updateUserRoleController,
 } from "../controller/admin.controller";
 import { authenticateHandler } from "../middlewares/authenticate";
@@ -30,5 +31,11 @@ adminRouter.patch(
   assignUserToProjectController
 );
 
+adminRouter.get(
+  "/users/projectId/:id",
+  authenticateHandler,
+  authorize("admin", "jefe_encargado"),
+  getUserProjectIdController
+);
 
 export default adminRouter;

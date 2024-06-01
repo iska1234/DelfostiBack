@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../middlewares/error";
-import { assignUserToProjectService, getAllUsersService, updateUserRoleService } from "../services/admin.service";
+import { assignUserToProjectService, getAllUsersService, getUserProjectIdService, updateUserRoleService } from "../services/admin.service";
 
 export async function getAllUsersController(
   _req: Request,
@@ -64,5 +64,32 @@ export async function assignUserToProjectController(req: Request, res: Response,
   } catch (error) {
     console.error("Error al asignar el proyecto al usuario:", error);
     return next(new ApiError("Error al asignar el proyecto al usuario", 500));
+  }
+}
+
+export async function getUserProjectIdController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const userId = parseInt(req.params['id']);
+
+  try {
+    const projectId = await getUserProjectIdService(userId);
+
+    if (projectId === null) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      projectId: projectId,
+    });
+  } catch (error) {
+    console.error("Error while fetching user's projectId:", error);
+    next(new ApiError("Internal server error", 500));
   }
 }
