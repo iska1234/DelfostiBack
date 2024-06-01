@@ -18,6 +18,11 @@ export async function assignUserToProjectService(userId: number, projectId: numb
 }
 
 export async function getUserProjectIdService(userId: number): Promise<number | null> {
-  const projectId = getUserProjectId(userId);
-  return projectId;
+  try {
+    const projectId = await getUserProjectId(userId);
+    return projectId;
+  } catch (error) {
+    console.error("Error while fetching user's projectId:", error);
+    return null;
+  }
 }
