@@ -1,15 +1,14 @@
-//users
+//users (creation table)
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     age INTEGER,
-    projectId INTEGER,
     role VARCHAR(20) NOT NULL DEFAULT 'user' CHECK (role IN ('admin', 'user')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (projectId) REFERENCES proyectos(id)
+  
 );
 
 //session
@@ -51,4 +50,27 @@ CREATE TABLE tasks (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (projectId) REFERENCES projects(id),
     FOREIGN KEY (responsible) REFERENCES users(id)
+);
+
+//Añadir la relacion del usuario & proyecto
+ALTER TABLE users
+ADD COLUMN projectId INTEGER;
+
+ALTER TABLE users
+ADD CONSTRAINT fk_project
+FOREIGN KEY (projectId)
+REFERENCES projects(id);
+
+//Tabla final users
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INTEGER,
+    projectId INTEGER,
+    role VARCHAR(20) NOT NULL DEFAULT 'user' CHECK (role IN ('admin', 'user')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    FOREIGN KEY (projectId) REFERENCES proyectos(id)
 );

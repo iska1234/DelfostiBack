@@ -6,6 +6,7 @@ import {
   getTasksByProjectService,
   getTasksByUserService,
   updateCompletedTaskService,
+  updateDeclinedTaskService,
   updateRevisionTaskService,
 } from "../services/task.service";
 
@@ -181,6 +182,40 @@ export async function updateCompletedTaskController(
     }
 
     const tareaActualizada = await updateCompletedTaskService(Number(taskId));
+
+    if (!tareaActualizada) {
+      throw new ApiError(
+        "No se encontró ninguna tarea con el ID proporcionado",
+        404
+      );
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Avance y estado de la tarea actualizados exitosamente",
+      data: tareaActualizada,
+    });
+  } catch (error) {
+    console.error("Error al actualizar el avance y estado de la tarea:", error);
+    return next(
+      new ApiError("Error al actualizar el avance y estado de la tarea", 500)
+    );
+  }
+}
+
+export async function updateDeclinedTaskController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { taskId } = req.params;
+
+    if (!taskId) {
+      throw new ApiError("El ID de la tarea es obligatorio", 400);
+    }
+
+    const tareaActualizada = await updateDeclinedTaskService(Number(taskId));
 
     if (!tareaActualizada) {
       throw new ApiError(

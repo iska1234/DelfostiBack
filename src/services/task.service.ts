@@ -4,6 +4,7 @@ import {
   getTasksByProject,
   getTasksByUser,
   updateCompletedTask,
+  updateDeclinedTask,
   updateRevisionTask,
 } from "../data/task.data";
 import { Tarea } from "../models/tasks";
@@ -58,4 +59,9 @@ export async function updateRevisionTaskService(taskId: number): Promise<Tarea |
 
 export async function updateCompletedTaskService(taskId: number): Promise<Tarea | null> {
   return await updateCompletedTask(taskId);
+}
+
+
+export async function updateDeclinedTaskService(taskId: number): Promise<Tarea | null> {
+  return await updateDeclinedTask(taskId);
 }

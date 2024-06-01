@@ -103,3 +103,25 @@ export async function updateCompletedTask(
 
   return rows[0] as Tarea;
 }
+
+export async function updateDeclinedTask(
+  taskId: number
+): Promise<Tarea | null> {
+  const avance = 0;
+  const estado = "Observación";
+
+  const queryString = `
+    UPDATE tasks
+    SET advance = $1, state = $2
+    WHERE taskId = $3
+    RETURNING *
+  `;
+
+  const { rows } = await query(queryString, [avance, estado, taskId]);
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  return rows[0] as Tarea;
+}

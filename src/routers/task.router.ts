@@ -7,6 +7,7 @@ import {
   getTasksByProjectController,
   getTasksByUserController,
   updateCompletedTaskController,
+  updateDeclinedTaskController,
   updateRevisionTaskController,
 } from "../controller/tasks.controller";
 
@@ -50,8 +51,16 @@ taskRouter.patch(
 taskRouter.patch(
   "/update/completed/:taskId",
   authenticateHandler,
-  authorize("admin"),
+  authorize("admin", "jefe_encargado"),
   updateCompletedTaskController
 );
+
+taskRouter.patch(
+  "/update/declined/:taskId",
+  authenticateHandler,
+  authorize("admin", "jefe_encargado"),
+  updateDeclinedTaskController
+);
+
 
 export default taskRouter;
