@@ -64,7 +64,7 @@ export async function getTaskById(taskId: number): Promise<Tarea | null> {
 export async function updateRevisionTask(
   taskId: number
 ): Promise<Tarea | null> {
-  const avance = 25;
+  const avance = 50;
   const estado = "Revisión";
 
   const queryString = `
